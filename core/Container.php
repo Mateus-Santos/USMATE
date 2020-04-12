@@ -4,10 +4,18 @@ namespace Core;
 
 class Container
 {
+    //Função na qual instancia um controller base
     public static function NewController($controller)
     {
         $controller = "App\\Controllers\\" . $controller;
         return new $controller;
+    }
+
+    // função que instancia uma model base.
+    public static function getModel($model)
+    {
+        $objModel = "App\\Models\\" . $model;
+        return new $objModel(DataBase::getDataBase());
     }
 
     public static function pageNotFound()

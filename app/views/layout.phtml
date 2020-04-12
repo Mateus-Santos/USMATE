@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
+	<!-- A função getPageTitle é onde envia um caractere como parametro para a utilização de um titulo dinamico. -->
 	<title><?php $this->getPageTitle('|') ?>Tela base</title>
 	<meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 </head>
 <body>
+<!-- Aqui é onde o layout faz a chamada primero do menu e depois da tela onde entregara o conteudo da view selecionada pelo usuario. -->
 <?php require_once __DIR__ . "/menu.phtml" ?>
 <?php $this->content() ?>
 </body>

@@ -55,7 +55,7 @@ class Route
         $url = $this->getUrl();
         $urlArray = explode('/', $url);
         $param = [];
-        $found = false;
+        $found = null;
         //Esse foreach foi feito para percorrer o Array que tem todas as rotas criada pelo programador.
         foreach ($this->routes as $route)
         {
