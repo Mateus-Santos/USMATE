@@ -2,18 +2,28 @@
     <div class="row">
         <h1 class="h1">
             <?php $this->getPageTitle(); ?>
-            <a href="/post/create" class="btn btn-primary glyphicon glyphicon-plus">
+            <a href="/post/create" class="btn btn-primary text-right">
             New Post
             </a>
         </h1>
     </div>
 
+    <?php $this->renderView('alerts/_success') ?>
+    <?php $this->renderView('alerts/_errors') ?>
+    
     <?php foreach($this->view->posts as $post): ?>
-    <div class="row">
-        <a href="/post/<?php echo $post->id; ?>/show">
-        <h3 class="h3"><?php echo $post->title; ?></h3>
+    <h3 class="h3">
+        <a href="/post/<?php echo $post->id; ?>/show"><?php echo $post->title; ?></a>
+    </h3>
+    <p class="text-justify"><?php echo $post->content; ?></p>
+    <p class="text-right">
+        <a href="/post/<?php echo $post->id?>/edit" class="btn btn-warning btn-xs">
+            <i class="glyphicon glyphicon-pencil">Editar</i>
         </a>
-        <p class="text-justify"><?php echo $post->content; ?></p>
-    </div>
+        <a href="/post/<?php echo $post->id?>/delete" class="btn btn-danger btn-xs" onclick="return confirm('Deseja remover esse post ?')">
+            <i class="glyphicon glyphicon-remove-sing">Remove</i>
+        </a>
+    </p>
+    <hr/>
     <?php endforeach; ?>
 </div>

@@ -54,12 +54,12 @@ class Route
     {
         $url = $this->getUrl();
         $urlArray = explode('/', $url);
-        $param = [];
         $found = null;
         //Esse foreach foi feito para percorrer o Array que tem todas as rotas criada pelo programador.
         foreach ($this->routes as $route)
         {
             $routeArray = explode('/', $route[0]);
+            $param = [];
             /*Esse for logo abaixo foi feito para criar encontrar os parametros
             no caso os {id}, como padrão ele é encontrado atraves do caractere {*/
             for($i = 0; $i < count($routeArray); $i++)
@@ -96,6 +96,7 @@ class Route
                 break;
                 default:
                     $controller->$action($this->getRequest());
+            break;
             }
         }else{
             Container::pageNotFound();
