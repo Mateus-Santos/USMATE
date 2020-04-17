@@ -11,7 +11,7 @@ class Container
         return new $controller;
     }
 
-    // função que instancia uma model base.
+    // Função que instancia uma model base.
     public static function getModel($model)
     {
         $objModel = "App\\Models\\" . $model;

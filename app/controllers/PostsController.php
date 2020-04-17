@@ -6,6 +6,7 @@ use Core\BaseController;
 use Core\Container;
 use Core\Redirect;
 use Core\Session;
+use Core\Validator;
 
 use App\Models\Post;
 
@@ -44,13 +45,13 @@ class PostsController extends BaseController
     {
         $this->view->post = $this->post->find($id);
         $this->setPageTitle("{$this->view->post->title}");
-        $this->renderView('posts/show', 'layout');
+       return  $this->renderView('posts/show', 'layout');
     }
 
     public function create()
     {
         $this->setPageTitle('New Post');
-        $this->renderView('posts/create', 'layout');
+        return $this->renderView('posts/create', 'layout');
     }
 
     //Primiero nome da coluna da tabela e depois o nome do value.
@@ -76,9 +77,13 @@ class PostsController extends BaseController
     //Chama view edit para realziar a alteração de dados.
     public function edit($id)
     {
+        if(Session::get('errors')){
+            $this->view->errors = Session::get('errors');
+            Session::destroy('errors');
+        }
         $this->view->post = $this->post->find($id);
         $this->setPageTitle('Edit post - ' . $this->view->post->title);
-        $this->renderView('posts/edit', 'layout');
+        return $this->renderView('posts/edit', 'layout');
     }
 
     //Função para realizar a atualização de uma tabela no banco de dados
@@ -88,6 +93,18 @@ class PostsController extends BaseController
             'title' => $request->post->title,
             'content' => $request->post->content
         ];
+
+        $rules = [
+            'title' => 'required',
+            'content' => 'required'
+        ];
+
+        $validator = Validator::make($data, $rules);
+
+        if($validator)
+        {
+            return Redirect::route("/post/{$id}/edit");
+        }
 
         /*  Aqui é feita a validação para verificar se a atualização foi 
             feita com sucesso, utilizando uma função chamada update na 
