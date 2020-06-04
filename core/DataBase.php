@@ -13,10 +13,9 @@ class DataBase
 
         if($conf['driver'] == 'sqlite')
         {
-            $sqlite = __DIR__ . "/../storage/databases/" . $conf['sqlite']['host'];
+            $sqlite = __DIR__ . "/../storage/databases/" . $conf['sqlite']['database'];
             $sqlite = "sqlite:" . $sqlite;
-            $charset = $conf['sqlite']['charset'];
-            $collation = $conf['sqlite']['collation'];
+
             try{
                 $pdo = new PDO($sqlite);
                 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);

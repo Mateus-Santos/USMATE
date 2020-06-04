@@ -2,9 +2,21 @@
 
 namespace App\Models;
 
-use Core\BaseModel;
+use Illuminate\Database\Eloquent\Model;
 
-class Post extends BaseModel
+class Post extends Model
 {
-    protected $table = "Posts";
+    public $table = "Posts";
+
+    public $timestamps = false;
+
+    protected $filable = ['title', 'content'];
+
+    public function rules()
+    {
+        return[
+            'title' => 'min:5|max:10',
+            'content' => 'min:30'
+        ];
+    }
 }

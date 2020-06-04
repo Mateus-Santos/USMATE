@@ -5,6 +5,9 @@ namespace Core;
 abstract class BaseController
 {
     protected $view;
+    protected $errors;
+    protected $inputs;
+    protected $success;
     private $viewPath;
     private $layoutPath;
     private $pageTitle = null;
@@ -12,6 +15,23 @@ abstract class BaseController
     public function __construct()
     {
         $this->view = new \stdClass;
+
+        //validação para caso a atualização der algum problema!
+        if(Session::get('errors')){
+            $this->errors = Session::get('errors');
+            Session::destroy('errors');
+        }
+
+        if(Session::get('inputs')){
+            $this->inputs = Session::get('inputs');
+            Session::destroy('inputs');
+        }
+
+        //validação para caso a atualização for efetuada com sucesso!
+        if(Session::get('success')){
+            $this->success = Session::get('success');
+            Session::destroy('success');
+        }
     }
 
     //Função para renderizar uma view caso tenha layout ou não.

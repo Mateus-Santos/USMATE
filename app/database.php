@@ -1,16 +1,16 @@
 <?php
 
 return [
-    /**
-     * Options (mysql, sqlite)
-     */
+    /*Options (core, illuminate)*/
+    'baseModel' => 'illuminate',
+
+    /*Options (mysql, sqlite)*/
     'driver' => 'sqlite',
 
     'sqlite' => [
-        'host' => 'database.db',
-        'charset' => 'utf8',
-        'collation' => 'utf8_general_ci'
+        'database' => 'database.db'
     ],
+    
     'mysql' =>[
         'host' => 'localhost',
         'database' => 'banco_teste', //nome do banco
